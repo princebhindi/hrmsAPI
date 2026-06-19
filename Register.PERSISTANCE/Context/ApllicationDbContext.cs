@@ -21,5 +21,6 @@ namespace Register.PERSISTANCE.Context
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<EmployeeDocument> EmployeeDocuments { get; set; }
         public DbSet<Notice> Notices { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
     }
 }
