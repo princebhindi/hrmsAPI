@@ -30,7 +30,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
     {
-        policy.WithOrigins("http://localhost:4200") // Angular app URL
+        policy.SetIsOriginAllowed(origin => true) // Allow Netlify and Localhost origins dynamically
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
