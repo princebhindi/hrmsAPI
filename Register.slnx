@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Register.API/Register.API.csproj" />
+  <Project Path="Register.APLLICATION/Register.APPLICATION.csproj" />
+  <Project Path="Register.DOMAIN/Register.DOMAIN.csproj" />
+  <Project Path="Register.PERSISTANCE/Register.PERSISTANCE.csproj" />
+  <Project Path="Register.Tests/Register.Tests.csproj" />
+</Solution>
