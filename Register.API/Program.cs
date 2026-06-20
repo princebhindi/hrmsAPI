@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Text;
 using Serilog;
+using Register.DOMAIN.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -106,6 +107,7 @@ builder.Services.AddScoped<IAttendance, AttendanceRepo>();
 builder.Services.AddScoped<IEmployeeDocument, EmployeeDocumentRepo>();
 builder.Services.AddScoped<INotice, NoticeRepo>();
 builder.Services.AddScoped<ISalary, SalaryRepo>();
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {

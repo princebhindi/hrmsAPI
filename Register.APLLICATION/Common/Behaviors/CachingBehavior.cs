@@ -32,7 +32,7 @@ namespace Register.APPLICATION.Common.Behaviors
                     }
                     finalKey = $"{cachableQuery.CacheKey}_v{version}";
                 }
-
+                
                 var cachedResponse = await _cache.GetAsync<TResponse>(finalKey);
                 if (cachedResponse != null)
                 {

@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Register.DOMAIN.Common;
 
 namespace Register.DOMAIN.Entities
@@ -6,6 +7,8 @@ namespace Register.DOMAIN.Entities
     public class Leave : Basic
     {
         public Guid? EmpId { get; set; }
+
+        [ForeignKey("EmpId")]
         public Employee? Employee { get; set; }
 
         public Guid? UserId { get; set; }

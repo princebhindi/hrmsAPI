@@ -37,6 +37,16 @@ namespace Register.PERSISTANCE.Repository
 
         public async Task<Attendance> AddAttendanceAsync(Attendance attendance)
         {
+            if (attendance.CheckInTime.HasValue && attendance.CheckOutTime.HasValue)
+            {
+                var duration = attendance.CheckOutTime.Value - attendance.CheckInTime.Value;
+                attendance.TotalHours = Math.Round(duration.TotalHours, 2);
+            }
+            else
+            {
+                attendance.TotalHours = null;
+            }
+
             await _context.Attendances.AddAsync(attendance);
             await _context.SaveChangesAsync();
             return attendance;
@@ -51,7 +61,17 @@ namespace Register.PERSISTANCE.Repository
             existing.Date = attendance.Date;
             existing.CheckInTime = attendance.CheckInTime;
             existing.CheckOutTime = attendance.CheckOutTime;
-            existing.TotalHours = attendance.TotalHours;
+            
+            if (attendance.CheckInTime.HasValue && attendance.CheckOutTime.HasValue)
+            {
+                var duration = attendance.CheckOutTime.Value - attendance.CheckInTime.Value;
+                existing.TotalHours = Math.Round(duration.TotalHours, 2);
+            }
+            else
+            {
+                existing.TotalHours = null;
+            }
+
             existing.Status = attendance.Status;
             existing.OnUpdate = DateTime.Now;
 
