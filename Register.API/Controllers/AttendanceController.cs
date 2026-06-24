@@ -22,7 +22,7 @@ namespace Register.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> GetAllAttendance([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var res = await _mediator.Send(new GetAllAttendanceQuery(pageNumber, pageSize));
