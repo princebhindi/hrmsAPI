@@ -26,6 +26,7 @@ namespace Register.APPLICATION.Mapping
             CreateMap<Notice, NoticeResponseDto>().ReverseMap();
             CreateMap<Salary, SalaryDto>().ReverseMap();
             CreateMap<Salary, SalaryResponseDto>().ReverseMap();
+            CreateMap<EmployeeDto, EmployeeStatsDto>().ReverseMap();
         }
     }
 }

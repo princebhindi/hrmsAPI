@@ -4857,3 +4857,39 @@ StackExchange.Redis.RedisConnectionException: The message timed out in the backl
    --- End of inner exception stack trace ---
    at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.SetImplAsync(String key, ReadOnlySequence`1 value, DistributedCacheEntryOptions options, CancellationToken token)
    at Register.PERSISTANCE.Services.CacheService.SetAsync[T](String key, T value, Nullable`1 expirationTime) in D:\HMS\FullCrud\Register\Register.PERSISTANCE\Services\CacheService.cs:line 55
+2026-06-19 21:52:32.389 +05:30 [INF] Now listening on: https://localhost:7132
+2026-06-19 21:52:32.459 +05:30 [INF] Now listening on: http://localhost:5178
+2026-06-19 21:52:32.573 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-19 21:52:32.574 +05:30 [INF] Hosting environment: Development
+2026-06-19 21:52:32.576 +05:30 [INF] Content root path: D:\HMS\FullCrud\Register\Register.API
+2026-06-19 21:52:34.817 +05:30 [INF] HTTP GET /index.html responded 304 in 162.5709 ms
+2026-06-19 21:52:35.064 +05:30 [INF] HTTP GET /index.js responded 304 in 0.9626 ms
+2026-06-19 21:52:35.108 +05:30 [INF] HTTP GET /index.css responded 304 in 71.0613 ms
+2026-06-19 21:52:35.108 +05:30 [INF] HTTP GET /swagger-ui-standalone-preset.js responded 304 in 70.8491 ms
+2026-06-19 21:52:35.108 +05:30 [INF] HTTP GET /swagger-ui-bundle.js responded 304 in 69.1624 ms
+2026-06-19 21:52:35.112 +05:30 [INF] HTTP GET /swagger-ui.css responded 304 in 74.3415 ms
+2026-06-19 21:52:35.681 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 105.4559 ms
+2026-06-19 21:53:46.148 +05:30 [INF] HTTP OPTIONS /api/Leaves responded 204 in 19.8719 ms
+2026-06-19 21:53:46.148 +05:30 [INF] HTTP OPTIONS /GetCount responded 204 in 18.8257 ms
+2026-06-19 21:53:46.148 +05:30 [INF] HTTP OPTIONS /api/Notices responded 204 in 19.9202 ms
+2026-06-19 21:53:46.148 +05:30 [INF] HTTP OPTIONS /api/Employee/count responded 204 in 20.3135 ms
+2026-06-19 21:53:46.148 +05:30 [INF] HTTP OPTIONS /api/Employee responded 204 in 20.1667 ms
+2026-06-19 21:53:46.148 +05:30 [INF] HTTP OPTIONS /api/Attendance/count responded 204 in 10.6411 ms
+2026-06-19 21:53:46.148 +05:30 [INF] HTTP OPTIONS /api/Leaves responded 204 in 4.8342 ms
+2026-06-19 21:53:46.148 +05:30 [INF] HTTP OPTIONS /api/Attendance responded 204 in 4.5563 ms
+2026-06-19 21:53:46.513 +05:30 [INF] HTTP GET /GetCount responded 401 in 335.9468 ms
+2026-06-19 21:53:46.513 +05:30 [INF] HTTP GET /api/Attendance/count responded 401 in 314.8067 ms
+2026-06-19 21:53:46.513 +05:30 [INF] HTTP GET /api/Attendance responded 401 in 305.4241 ms
+2026-06-19 21:53:46.513 +05:30 [INF] HTTP GET /api/Employee/count responded 401 in 328.3645 ms
+2026-06-19 21:53:46.513 +05:30 [INF] HTTP GET /api/Leaves responded 401 in 335.7106 ms
+2026-06-19 21:53:46.513 +05:30 [INF] HTTP GET /api/Notices responded 401 in 334.1805 ms
+2026-06-19 21:53:46.513 +05:30 [INF] HTTP GET /api/Leaves responded 401 in 310.1353 ms
+2026-06-19 21:53:46.513 +05:30 [INF] HTTP GET /api/Employee responded 401 in 322.8303 ms
+2026-06-19 22:10:04.915 +05:30 [WRN] No store type was specified for the decimal property 'BaseSalary' on entity type 'Salary'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-19 22:10:04.956 +05:30 [WRN] No store type was specified for the decimal property 'Deductions' on entity type 'Salary'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-19 22:10:04.956 +05:30 [WRN] No store type was specified for the decimal property 'HRA' on entity type 'Salary'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-19 22:10:04.956 +05:30 [WRN] No store type was specified for the decimal property 'InHandSalary' on entity type 'Salary'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-19 22:10:43.325 +05:30 [WRN] No store type was specified for the decimal property 'BaseSalary' on entity type 'Salary'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-19 22:10:43.365 +05:30 [WRN] No store type was specified for the decimal property 'Deductions' on entity type 'Salary'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-19 22:10:43.366 +05:30 [WRN] No store type was specified for the decimal property 'HRA' on entity type 'Salary'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-19 22:10:43.366 +05:30 [WRN] No store type was specified for the decimal property 'InHandSalary' on entity type 'Salary'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.

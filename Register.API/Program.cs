@@ -108,6 +108,7 @@ builder.Services.AddScoped<IEmployeeDocument, EmployeeDocumentRepo>();
 builder.Services.AddScoped<INotice, NoticeRepo>();
 builder.Services.AddScoped<ISalary, SalaryRepo>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddScoped<IEmployeeStatRepo, EmployeeStatRepo>();
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {

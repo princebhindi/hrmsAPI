@@ -68,8 +68,7 @@ namespace Register.PERSISTANCE.Repository
             if (existingUser == null) return false;
 
             existingUser.UserName = user.UserName;
-            existingUser.Name = user.Name;
-            existingUser.LastName = user.LastName;
+           
             existingUser.Role = user.Role;
             existingUser.IsActive = user.IsActive;
             existingUser.OnUpdate = DateTime.Now;
