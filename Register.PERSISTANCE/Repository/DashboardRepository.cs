@@ -20,7 +20,7 @@ namespace Register.PERSISTANCE.Repository
         public async Task<DashboardStatsDto> GetDashboardStatsAsync()
         {
             var stats = new DashboardStatsDto();
-            var today = DateTime.Today;
+            var today = DateTime.SpecifyKind(DateTime.UtcNow.Date, DateTimeKind.Utc);
 
             var combined = await _context.Employees
                 .Take(1)

@@ -15,6 +15,7 @@ using System.Text;
 using Serilog;
 using Register.DOMAIN.Entities;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure Serilog
