@@ -1,4 +1,4 @@
-﻿namespace Register.Tests;
+namespace Register.Tests;
 
 public class UnitTest1
 {

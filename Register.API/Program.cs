@@ -95,7 +95,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddDbContext<ApllicationDbContext>(options =>
-    options.UseSqlServer(
+    options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUserRepo, UserRepo>();
@@ -110,10 +110,18 @@ builder.Services.AddScoped<ISalary, SalaryRepo>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IEmployeeStatRepo, EmployeeStatRepo>();
 
-builder.Services.AddStackExchangeRedisCache(options =>
+var redisConnection = builder.Configuration.GetConnectionString("RedisConnection");
+if (string.IsNullOrEmpty(redisConnection))
 {
-    options.Configuration = builder.Configuration.GetConnectionString("RedisConnection") ?? "localhost:6379";
-});
+    builder.Services.AddDistributedMemoryCache();
+}
+else
+{
+    builder.Services.AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = redisConnection;
+    });
+}
 builder.Services.AddScoped<ICacheService, CacheService>();
 
 

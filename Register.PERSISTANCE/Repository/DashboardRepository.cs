@@ -20,34 +20,31 @@ namespace Register.PERSISTANCE.Repository
         public async Task<DashboardStatsDto> GetDashboardStatsAsync()
         {
             var stats = new DashboardStatsDto();
-
-            // 1. Total headcount of active employees
-            stats.TotalEmployees = await _context.Employees.CountAsync(x => x.IsActive);
-
-            // 2. Total active departments
-            stats.TotalDepartments = await _context.DepartMents.CountAsync(x => x.IsActive);
-
-            // 3. Count of pending leaves
-            stats.PendingLeavesCount = await _context.Leaves.CountAsync(x => x.IsPending);
-
-            // 4. Count of active notices (not expired)
             var today = DateTime.Today;
-            stats.ActiveNoticesCount = await _context.Notices.CountAsync(x => 
-                x.IsActive && (x.ExpiryDate == null || x.ExpiryDate >= today));
 
-            // 5. Today's present percentage
-            if (stats.TotalEmployees > 0)
+            var combined = await _context.Employees
+                .Take(1)
+                .Select(_ => new
+                {
+                    TotalEmployees = _context.Employees.Count(x => x.IsActive),
+                    TotalDepartments = _context.DepartMents.Count(x => x.IsActive),
+                    PendingLeavesCount = _context.Leaves.Count(x => x.IsPending),
+                    ActiveNoticesCount = _context.Notices.Count(x => x.IsActive && (x.ExpiryDate == null || x.ExpiryDate >= today)),
+                    PresentCount = _context.Attendances.Count(x => x.Date.Date == today && x.Status == "Present")
+                })
+                .FirstOrDefaultAsync();
+
+            if (combined != null)
             {
-                var presentCount = await _context.Attendances.CountAsync(x => 
-                    x.Date.Date == today && x.Status == "Present");
-                stats.TodayAttendancePercentage = Math.Round(((double)presentCount / stats.TotalEmployees) * 100, 2);
-            }
-            else
-            {
-                stats.TodayAttendancePercentage = 0;
+                stats.TotalEmployees = combined.TotalEmployees;
+                stats.TotalDepartments = combined.TotalDepartments;
+                stats.PendingLeavesCount = combined.PendingLeavesCount;
+                stats.ActiveNoticesCount = combined.ActiveNoticesCount;
+                stats.TodayAttendancePercentage = stats.TotalEmployees > 0
+                    ? Math.Round(((double)combined.PresentCount / stats.TotalEmployees) * 100, 2)
+                    : 0;
             }
 
-            // 6. Department wise headcounts
             stats.DepartmentHeadcounts = await _context.Employees
                 .Where(x => x.IsActive && x.DeptId != null)
                 .GroupBy(x => x.Dept!.Name)

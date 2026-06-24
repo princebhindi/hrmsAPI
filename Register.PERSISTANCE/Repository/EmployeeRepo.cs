@@ -20,6 +20,7 @@ namespace Register.PERSISTANCE.Repository
         public async Task<IEnumerable<Employee>> GetAllEmployeesAsync(int pageNumber, int pageSize)
         {
             return await _context.Employees
+                .AsNoTracking()
                 .Include(e => e.Dept)
                 .Where(e => e.IsActive)
                 .Skip((pageNumber - 1) * pageSize)
@@ -30,6 +31,7 @@ namespace Register.PERSISTANCE.Repository
         public async Task<Employee?> GetEmployeeByIdAsync(Guid id)
         {
             return await _context.Employees
+                .AsNoTracking()
                 .Include(e => e.Dept)
                 .FirstOrDefaultAsync(e => e.Id == id && e.IsActive);
         }
