@@ -11,4 +11,6 @@ public class EmployeeDto : Basic
     public string? Email { get; set; }
     public Guid? DeptId { get; set; }
     public DepartMent? Dept { get; set; }
+    public string? UserName { get; set; }
+    public string? Password { get; set; }
 }
