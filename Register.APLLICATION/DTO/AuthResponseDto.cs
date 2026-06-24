@@ -8,5 +8,6 @@ namespace Register.APPLICATION.DTO
     {
         public string UserName { get; set; }
         public string Token { get; set; }
+        public Guid UserId { get; set; }
     }
 }

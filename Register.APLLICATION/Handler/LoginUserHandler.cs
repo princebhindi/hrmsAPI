@@ -32,7 +32,8 @@ namespace Register.APPLICATION.Handler
             var claims = new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.UserName.ToString()),
-            new Claim(ClaimTypes.Role, user.Role)
+            new Claim(ClaimTypes.Role, user.Role ?? "Employee"),
+            new Claim("empId", user.Id.ToString())
         };
             var key = new SymmetricSecurityKey(
            Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -68,7 +69,8 @@ namespace Register.APPLICATION.Handler
                     Data = new AuthResponseDto
                     {
                         UserName = request.user.UserName,
-                        Token = token
+                        Token = token,
+                        UserId = success.Id
                     }
                 };
             }
