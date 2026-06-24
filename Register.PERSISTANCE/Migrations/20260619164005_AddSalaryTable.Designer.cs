@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Register.PERSISTANCE.Context;
 
@@ -11,9 +12,11 @@ using Register.PERSISTANCE.Context;
 namespace Register.PERSISTANCE.Migrations
 {
     [DbContext(typeof(ApllicationDbContext))]
-    partial class ApllicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260619164005_AddSalaryTable")]
+    partial class AddSalaryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,6 +43,9 @@ namespace Register.PERSISTANCE.Migrations
                     b.Property<Guid?>("EmpId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -60,7 +66,7 @@ namespace Register.PERSISTANCE.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpId");
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Attendances");
                 });
@@ -149,6 +155,9 @@ namespace Register.PERSISTANCE.Migrations
                     b.Property<Guid?>("EmpId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -163,7 +172,7 @@ namespace Register.PERSISTANCE.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpId");
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("EmployeeDocuments");
                 });
@@ -211,6 +220,9 @@ namespace Register.PERSISTANCE.Migrations
                     b.Property<Guid?>("EmpId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -246,7 +258,7 @@ namespace Register.PERSISTANCE.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpId");
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("UserId");
 
@@ -305,6 +317,9 @@ namespace Register.PERSISTANCE.Migrations
                     b.Property<Guid?>("EmpId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("HRA")
                         .HasColumnType("decimal(18,2)");
 
@@ -331,7 +346,7 @@ namespace Register.PERSISTANCE.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpId");
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Salaries");
                 });
@@ -344,6 +359,12 @@ namespace Register.PERSISTANCE.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OnCreate")
                         .HasColumnType("datetime2");
@@ -371,7 +392,7 @@ namespace Register.PERSISTANCE.Migrations
                 {
                     b.HasOne("Register.DOMAIN.Entities.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmpId");
+                        .HasForeignKey("EmployeeId");
 
                     b.Navigation("Employee");
                 });
@@ -389,7 +410,7 @@ namespace Register.PERSISTANCE.Migrations
                 {
                     b.HasOne("Register.DOMAIN.Entities.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmpId");
+                        .HasForeignKey("EmployeeId");
 
                     b.Navigation("Employee");
                 });
@@ -407,7 +428,7 @@ namespace Register.PERSISTANCE.Migrations
                 {
                     b.HasOne("Register.DOMAIN.Entities.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmpId");
+                        .HasForeignKey("EmployeeId");
 
                     b.HasOne("Register.DOMAIN.Entities.UserRegister", "User")
                         .WithMany()
@@ -431,7 +452,7 @@ namespace Register.PERSISTANCE.Migrations
                 {
                     b.HasOne("Register.DOMAIN.Entities.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmpId");
+                        .HasForeignKey("EmployeeId");
 
                     b.Navigation("Employee");
                 });

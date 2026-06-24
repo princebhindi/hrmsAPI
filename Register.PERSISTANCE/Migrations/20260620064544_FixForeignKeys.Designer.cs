@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Register.PERSISTANCE.Context;
 
@@ -11,9 +12,11 @@ using Register.PERSISTANCE.Context;
 namespace Register.PERSISTANCE.Migrations
 {
     [DbContext(typeof(ApllicationDbContext))]
-    partial class ApllicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260620064544_FixForeignKeys")]
+    partial class FixForeignKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,6 +347,12 @@ namespace Register.PERSISTANCE.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OnCreate")
                         .HasColumnType("datetime2");

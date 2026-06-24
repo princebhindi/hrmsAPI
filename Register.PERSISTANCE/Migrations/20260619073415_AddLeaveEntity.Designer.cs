@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Register.PERSISTANCE.Context;
 
@@ -11,9 +12,11 @@ using Register.PERSISTANCE.Context;
 namespace Register.PERSISTANCE.Migrations
 {
     [DbContext(typeof(ApllicationDbContext))]
-    partial class ApllicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260619073415_AddLeaveEntity")]
+    partial class AddLeaveEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,49 +24,6 @@ namespace Register.PERSISTANCE.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Register.DOMAIN.Entities.Attendance", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CheckInTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("CheckOutTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("EmpId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("OnCreate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("OnUpdate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("TotalHours")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmpId");
-
-                    b.ToTable("Attendances");
-                });
 
             modelBuilder.Entity("Register.DOMAIN.Entities.DepartMent", b =>
                 {
@@ -131,43 +91,6 @@ namespace Register.PERSISTANCE.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("Register.DOMAIN.Entities.EmployeeDocument", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DocumentName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DocumentPath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DocumentType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("EmpId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("OnCreate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("OnUpdate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmpId");
-
-                    b.ToTable("EmployeeDocuments");
-                });
-
             modelBuilder.Entity("Register.DOMAIN.Entities.Job", b =>
                 {
                     b.Property<Guid>("Id")
@@ -211,6 +134,9 @@ namespace Register.PERSISTANCE.Migrations
                     b.Property<Guid?>("EmpId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -246,94 +172,11 @@ namespace Register.PERSISTANCE.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpId");
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Leaves");
-                });
-
-            modelBuilder.Entity("Register.DOMAIN.Entities.Notice", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ExpiryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("OnCreate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("OnUpdate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("TargetDepartmentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TargetDepartmentId");
-
-                    b.ToTable("Notices");
-                });
-
-            modelBuilder.Entity("Register.DOMAIN.Entities.Salary", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("BaseSalary")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Deductions")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid?>("EmpId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("HRA")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("InHandSalary")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Month")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("OnCreate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("OnUpdate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmpId");
-
-                    b.ToTable("Salaries");
                 });
 
             modelBuilder.Entity("Register.DOMAIN.Entities.UserRegister", b =>
@@ -344,6 +187,12 @@ namespace Register.PERSISTANCE.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OnCreate")
                         .HasColumnType("datetime2");
@@ -367,15 +216,6 @@ namespace Register.PERSISTANCE.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Register.DOMAIN.Entities.Attendance", b =>
-                {
-                    b.HasOne("Register.DOMAIN.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmpId");
-
-                    b.Navigation("Employee");
-                });
-
             modelBuilder.Entity("Register.DOMAIN.Entities.Employee", b =>
                 {
                     b.HasOne("Register.DOMAIN.Entities.DepartMent", "Dept")
@@ -383,15 +223,6 @@ namespace Register.PERSISTANCE.Migrations
                         .HasForeignKey("DeptId");
 
                     b.Navigation("Dept");
-                });
-
-            modelBuilder.Entity("Register.DOMAIN.Entities.EmployeeDocument", b =>
-                {
-                    b.HasOne("Register.DOMAIN.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmpId");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Register.DOMAIN.Entities.Job", b =>
@@ -407,7 +238,7 @@ namespace Register.PERSISTANCE.Migrations
                 {
                     b.HasOne("Register.DOMAIN.Entities.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmpId");
+                        .HasForeignKey("EmployeeId");
 
                     b.HasOne("Register.DOMAIN.Entities.UserRegister", "User")
                         .WithMany()
@@ -416,24 +247,6 @@ namespace Register.PERSISTANCE.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Register.DOMAIN.Entities.Notice", b =>
-                {
-                    b.HasOne("Register.DOMAIN.Entities.DepartMent", "TargetDepartment")
-                        .WithMany()
-                        .HasForeignKey("TargetDepartmentId");
-
-                    b.Navigation("TargetDepartment");
-                });
-
-            modelBuilder.Entity("Register.DOMAIN.Entities.Salary", b =>
-                {
-                    b.HasOne("Register.DOMAIN.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmpId");
-
-                    b.Navigation("Employee");
                 });
 #pragma warning restore 612, 618
         }

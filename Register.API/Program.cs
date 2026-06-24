@@ -96,7 +96,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddDbContext<ApllicationDbContext>(options =>
-    options.UseNpgsql(
+    options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUserRepo, UserRepo>();
